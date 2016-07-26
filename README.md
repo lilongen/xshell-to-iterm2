@@ -33,8 +33,7 @@ if tree /opt/ciom/port/xshell/Sessions output as following
 │   │   ├── 172.17.128.151.xsh
 ...
 
-%Xshell_Session_Profiles_Location% -> /opt/ciom/port/xshell/Sessions
-run ./convert.xshell.to.iterms.sh /opt/ciom/port/xshell/Sessions
-will generate a file named iterm2.dp file in %Xshell2item2_Location%
+# ./convert.xshell.to.iterms.sh /opt/ciom/port/xshell/Sessions
+a file named iterm2.dp file generated in %Xshell2item2_Location%
 iterm2.dp is the converted iterm2 dynamic profile config file
 ```

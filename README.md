@@ -4,17 +4,17 @@ convert Xshell session profiles to iTerm2 Dynamic Profiles tools
 
 
 ## requirements
-
+```
 1. bash
 2. python, python jinja2
-
+```
 
 ## usage
-
+```
 1. cd %Xshell2item2_Location%
 2. ./convert.xshell.to.iterms.sh %Xshell_Session_Profiles_Location%
-
-### example
+```
+## example
 
 ```
 if tree /opt/ciom/port/xshell/Sessions output as following

@@ -1,6 +1,7 @@
 #!/usr/bin/python
 #
 
+import sys
 import re
 import os
 from jinja2 import Template, Environment, FileSystemLoader
@@ -35,7 +36,7 @@ def renderIterm2DynamicProfileTpl():
 
 def main():
 	global Xsh_Info
-	fXSHs = open("_xshell.sessions.info")
+	fXSHs = open(sys.argv[0])
 	for line in fXSHs:
 		info = extractSessionInfo(line)
 		Xsh_Info.append(info)

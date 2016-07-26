@@ -4,7 +4,7 @@ convert Xshell session profiles to iTerm2 Dynamic Profiles tools
 
 requirement:
 1. bash
-2. python
+2. python, python jinja2
 
 usage:
 1. cd %Xshell2item2_Location%
@@ -18,16 +18,13 @@ example:
 │   ├── 172.17.128.181.xsh
 ├── mysql
 │   ├── 172.17.128.211.xsh
-│   ├── 172.17.128.212.xsh
 │   ├── 172.17.128.213.xsh
 ├── web server
 │   ├── 172.17.128.191.xsh
-│   ├── 172.17.128.192.xsh
 │   ├── 172.17.128.193.xsh
 │   ├── tomcat
 │   │   ├── 172.17.128.150.xsh
 │   │   ├── 172.17.128.151.xsh
-│   │   ├── 172.17.128.152.xsh
 ...
 
 %Xshell_Session_Profiles_Location% -> /opt/ciom/port/xshell/Sessions

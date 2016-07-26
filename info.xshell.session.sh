@@ -3,10 +3,10 @@
 
 XshellSessionLocation=$1
 cd $XshellSessionLocation
-os=$(uname -a)
-
-if [[ $os == "Linux"* ]]; then
-	find  .  -name "*.xsh" -exec echo -n "{};" \; -exec grep -o -P "(?<=^Host=)([\w\-\.]+)" "{}" \; > /tmp/_xshell.sessions.info
-else 
-	find  .  -name "*.xsh" -exec echo -n "{};" \; -exec perl -nle 'print $1 if m{(?<=^Host=)([\w\.\-]+)}' "{}" \; > /tmp/_xshell.sessions.info
-fi
+find  .  -name "*.xsh" \
+	-exec printf "%s\t" "{}" \; \
+	-exec perl -nle 'printf("%s,", $1) if m{(?<=^Host=)([\w\.\-]+)}' "{}" \; \
+	-exec perl -nle 'printf("%s,", $1) if m{(?<=^Port=)([\d]+)}' "{}" \; \
+	-exec perl -nle 'printf("%s,", $1) if m{(?<=^UserName=)([\w]+)}' "{}" \; \
+	-exec perl -nle 'printf("%s\n", $1) if m{(?<=^Password=)([^\s\r\n]*)}' "{}" \; \
+	> /tmp/_xshell.sessions.info

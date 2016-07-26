@@ -5,7 +5,7 @@
 			"Name": "{{ profile.name }}",
 			"Guid": "{{ profile.name }}",
 			"Custom Command": "Yes",
-			"Command": "ssh root@{{ profile.ip }}",
+			"Command": "ssh {{ profile.username }}@{{ profile.ip }}{% if profile.port != "22" %} -P {{ profile.port }} {% endif %}",
 			"Tags": {{ profile.tag }},
 		},
 		{% endfor %}

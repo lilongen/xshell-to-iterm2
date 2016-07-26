@@ -1,4 +1,6 @@
 #!/bin/bash
 #
 
-find $XshellSessionLocation -name *.xsh -exec echo -n "{};" \; -exec grep -o -P "(?<=^Host=)(.+)" "{}" \; > _xshell.sessions.info
+XshellSessionLocation=$1
+cd $XshellSessionLocation
+find  .  -name "*.xsh" -exec echo -n "{};" \; -exec grep -o -P "(?<=^Host=)([\w\-\.]+)" "{}" \; > _xshell.sessions.info

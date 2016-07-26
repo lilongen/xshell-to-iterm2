@@ -10,15 +10,26 @@ from jinja2 import Template, Environment, FileSystemLoader
 P = re.compile(r'^\./(?P<dirs>.*)/(?P<name>.+)\.xsh')
 Xsh_Info= []
 
+def convertXshHierarchy2Iterm2Tags(hierarchyDirs):
+	arr = hierarchyDirs.split('/')
+	tags = []
+	tagName = ''
+	for i in range(len(arr)):
+		if i > 0:
+			tagName += ' | '
+		tagName += arr[i]
+		tags.append(tagName)
+	return '[' + ', '.join('"' + item + '"' for item in tags) + ']'
+
 def extractSessionInfo(line):
 	global P
 	arr = line.split(';');
 	m = P.search(arr[0])
-
+	tags = convertXshHierarchy2Iterm2Tags(m.group('dirs'))
 	return {
 		'ip': arr[1][:-1], 
 		'name': m.group('name'),
-		'tag': m.group('dirs').split('/')
+		'tag': tags
 	}
 
 

@@ -17,7 +17,7 @@ convert Xshell session profiles to iTerm2 Dynamic Profiles tools
 ## example
 
 ```
-if 
+if xshell session profiles locate at "/opt/ciom/port/xshell/Sessions" 
 # tree /opt/ciom/port/xshell/Sessions
 /opt/ciom/port/xshell/Sessions
 ├── iis
@@ -37,6 +37,5 @@ if
 then %Xshell_Session_Profiles_Location% is "/opt/ciom/port/xshell/Sessions"
 
 # ./convert.xshell.to.iterms.sh /opt/ciom/port/xshell/Sessions
-a file named iterm2.dp file generated in %Xshell2item2_Location%
-iterm2.dp is the converted iterm2 dynamic profile config file
+generated iterm2.dp under %Xshell2item2_Location% is the converted iterm2 dynamic profile config file.
 ```

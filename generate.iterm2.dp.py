@@ -36,7 +36,7 @@ def renderIterm2DynamicProfileTpl():
 
 def main():
 	global Xsh_Info
-	fXSHs = open(sys.argv[0])
+	fXSHs = open(sys.argv[1])
 	for line in fXSHs:
 		info = extractSessionInfo(line)
 		Xsh_Info.append(info)

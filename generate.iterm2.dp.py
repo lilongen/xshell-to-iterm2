@@ -21,23 +21,29 @@ def convertXshHierarchy2Iterm2Tags(hierarchyDirs):
 		tags.append(tagName)
 	return '[' + ', '.join('"' + item + '"' for item in tags) + ']'
 
+def getConnInfo(strConn):
+	arr = strConn.split(',')
+	return {
+		'ip': arr[0],
+		'port': arr[1],
+		'username': arr[2],
+		'password': arr[3]
+	}
+
 def extractSessionInfo(line):
 	global P
 	arr = line.split('\t');
 	m = P.search(arr[0])
+	name = m.group('name')	
+	conn = getConnInfo(arr[1])
 	tags = convertXshHierarchy2Iterm2Tags(m.group('dirs'))
 
-	connInfo = arr[1].split(',')
-	ip = connInfo[0]
-	port = connInfo[1]
-	username = connInfo[2]
-	password = connInfo[3]
 	return {
-		'ip': ip,
-		'port': port,
-		'username': username,
-		'password': password,
-		'name': m.group('name'),
+		'ip': conn['ip'],
+		'port': conn['port'],
+		'username': conn['username'],
+		'password': conn['password'],
+		'name': name,
 		'tag': tags
 	}
 
@@ -46,7 +52,6 @@ def renderIterm2DynamicProfileTpl():
 	tplLocation = os.path.dirname(os.path.abspath(__file__))
 	env = Environment(loader=FileSystemLoader(tplLocation))
 	template = env.get_template('iterm2.dynamic.profile.tpl')
-	print template.render(profiles=Xsh_Info)
 	
 	fh = open('iterm2.dp', 'w')
 	fh.write(template.render(profiles=Xsh_Info))
@@ -57,9 +62,8 @@ def main():
 	global Xsh_Info
 	fXSHs = open(sys.argv[1])
 	for line in fXSHs:
-		info = extractSessionInfo(line)
+		info = extractSessionInfo(line[:-1])
 		Xsh_Info.append(info)
-		print info
 	fXSHs.close()
 
 	renderIterm2DynamicProfileTpl()

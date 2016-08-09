@@ -62,7 +62,9 @@ def main():
 	global Xsh_Info
 	fXSHs = open(sys.argv[1])
 	for line in fXSHs:
-		info = extractSessionInfo(line[:-1])
+		line = line[:-1]
+		print "converting {} ... ".format(line)
+		info = extractSessionInfo(line)
 		Xsh_Info.append(info)
 	fXSHs.close()
 
